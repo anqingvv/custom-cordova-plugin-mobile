@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="custom-cordova-plugin-mobile"
+        version="0.0.1">
+    <name>CallSmsPlugin</name>
+    <decription>Custom cordova call and shortmessage plugin</decription>
+
+    <!-- common js -->
+    <js-module src="www/CallSmsPlugin.js" name="CallSmsPlugin">
+        <merges target="custom.mobile" />
+    </js-module>
+
+    <!-- Android -->
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="CallSmsPlugin">
+                <param name="android-package" value="com.vv.plugin.mobile.CallSmsPlugin"/>
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.CALL_PHONE" />
+            <uses-permission android:name="android.permission.SEND_SMS" />
+        </config-file>
+
+        <source-file src="src/android/CallSmsPlugin.java" target-dir="src/com/vv/plugin/mobile" />
+
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <info>Custom cordova call and shortmessage plugin for ios</info>
+        <config-file target="config.xml" parent="/*">
+            <feature name="CallSmsPlugin">
+                <param name="ios-package" value="CallSmsPlugin"></param>
+            </feature>
+        </config-file>
+
+        <header-file src="src/ios/CallSmsPlugin.h" />
+        <source-file src="src/ios/CallSmsPlugin.swift"/>
+    </platform>
+
+</plugin>
